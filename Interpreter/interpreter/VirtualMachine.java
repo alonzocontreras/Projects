@@ -117,7 +117,7 @@ public class VirtualMachine {
         return pc;
     }
 
-     public void reset(){
+    public void reset(){
         runStack.reset();
     }
 

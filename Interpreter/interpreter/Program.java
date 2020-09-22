@@ -39,15 +39,13 @@ public class Program {
     public void resolveAddrs(Program program) {
         LabelName = new HashMap<>();
 
-        int size = program.getSize();                               //We need to check to see if the bytecode being
-        for (int i = 0; i < size; i++){                             //called is LabelCode, if it is then we must
-            ByteCode currentCode = program.getCode(i);              //place its arguments into a new hashmap in order
-            if (currentCode instanceof LabelCode){                  //to compare it with the arguments in GoToCode,
-                LabelName.put(((LabelCode) currentCode).get(), i);  //FalseBranchCode, and CallCode.
+        int size = program.getSize();
+        for (int i = 0; i < size; i++){
+            ByteCode currentCode = program.getCode(i);
+            if (currentCode instanceof LabelCode){
+                LabelName.put(((LabelCode) currentCode).get(), i);
             }
         }
-        //when FalseBranchCode/GoToCode/CallCode are found, then replace Label argument with the location (position)
-        //of the previous bytecode
         for (int j = 0; j < size; j++){
             ByteCode currentCode = program.getCode(j);
             if (currentCode instanceof FalseBranchCode){
